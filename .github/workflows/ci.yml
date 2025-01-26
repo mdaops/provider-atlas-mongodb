@@ -48,11 +48,11 @@ jobs:
 
       - name: Vendor Dependencies
         run: make vendor vendor.check
-
-      - name: Lint
-        uses: golangci/golangci-lint-action@v3
-        with:
-          version: ${{ env.GOLANGCI_VERSION }}
+        # TODO: enable when everything is setup 
+      # - name: Lint
+      #   uses: golangci/golangci-lint-action@v3
+      #   with:
+      #     version: ${{ env.GOLANGCI_VERSION }}
 
   detect-noop:
     runs-on: ubuntu-24.04

@@ -2,6 +2,7 @@ package project
 
 import "github.com/crossplane/upjet/pkg/config"
 
+// Configure "project" resource
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("mongodbatlas_project", func(r *config.Resource) {
 		r.ShortGroup = "project"
