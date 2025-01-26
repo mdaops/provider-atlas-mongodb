@@ -104,7 +104,7 @@ jobs:
           restore-keys: ${{ runner.os }}-pkg-
 
         # Atlas docs are malformed
-      - name: Vendor Dependencies
+      - name: Fix docs
         run: ./hack/fix-docs.sh
 
       - name: Vendor Dependencies

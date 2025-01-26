@@ -14,6 +14,7 @@ import (
 )
 
 type AdvancedConfigurationInitParameters struct {
+
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the changeStreamOptions.preAndPostImages.expireAfterSeconds cluster parameter. Defaults to -1(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. expireAfterSeconds controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *float64 `json:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds,omitempty" tf:"change_stream_options_pre_and_post_images_expire_after_seconds,omitempty"`
 
@@ -62,6 +63,7 @@ type AdvancedConfigurationInitParameters struct {
 }
 
 type AdvancedConfigurationObservation struct {
+
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the changeStreamOptions.preAndPostImages.expireAfterSeconds cluster parameter. Defaults to -1(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. expireAfterSeconds controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *float64 `json:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds,omitempty" tf:"change_stream_options_pre_and_post_images_expire_after_seconds,omitempty"`
 
@@ -110,6 +112,7 @@ type AdvancedConfigurationObservation struct {
 }
 
 type AdvancedConfigurationParameters struct {
+
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the changeStreamOptions.preAndPostImages.expireAfterSeconds cluster parameter. Defaults to -1(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. expireAfterSeconds controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	// +kubebuilder:validation:Optional
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *float64 `json:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds,omitempty" tf:"change_stream_options_pre_and_post_images_expire_after_seconds,omitempty"`
@@ -173,6 +176,7 @@ type AdvancedConfigurationParameters struct {
 }
 
 type AnalyticsAutoScalingInitParameters struct {
+
 	// Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details. On the contrary, if a sharded cluster makes use of deprecated num_shards attribute (with values > 1), analytics instance size auto-scaling will be performed uniformily across all shards in the cluster.
 	ComputeEnabled *bool `json:"computeEnabled,omitempty" tf:"compute_enabled,omitempty"`
 
@@ -190,6 +194,7 @@ type AnalyticsAutoScalingInitParameters struct {
 }
 
 type AnalyticsAutoScalingObservation struct {
+
 	// Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details. On the contrary, if a sharded cluster makes use of deprecated num_shards attribute (with values > 1), analytics instance size auto-scaling will be performed uniformily across all shards in the cluster.
 	ComputeEnabled *bool `json:"computeEnabled,omitempty" tf:"compute_enabled,omitempty"`
 
@@ -207,6 +212,7 @@ type AnalyticsAutoScalingObservation struct {
 }
 
 type AnalyticsAutoScalingParameters struct {
+
 	// Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details. On the contrary, if a sharded cluster makes use of deprecated num_shards attribute (with values > 1), analytics instance size auto-scaling will be performed uniformily across all shards in the cluster.
 	// +kubebuilder:validation:Optional
 	ComputeEnabled *bool `json:"computeEnabled,omitempty" tf:"compute_enabled,omitempty"`
@@ -229,6 +235,7 @@ type AnalyticsAutoScalingParameters struct {
 }
 
 type AnalyticsSpecsInitParameters struct {
+
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, instance_size is set to "M30" or greater (not including "Mxx_NVME" tiers), and ebs_volume_type is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops *float64 `json:"diskIops,omitempty" tf:"disk_iops,omitempty"`
 
@@ -246,6 +253,7 @@ type AnalyticsSpecsInitParameters struct {
 }
 
 type AnalyticsSpecsObservation struct {
+
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, instance_size is set to "M30" or greater (not including "Mxx_NVME" tiers), and ebs_volume_type is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops *float64 `json:"diskIops,omitempty" tf:"disk_iops,omitempty"`
 
@@ -263,6 +271,7 @@ type AnalyticsSpecsObservation struct {
 }
 
 type AnalyticsSpecsParameters struct {
+
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, instance_size is set to "M30" or greater (not including "Mxx_NVME" tiers), and ebs_volume_type is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	// +kubebuilder:validation:Optional
 	DiskIops *float64 `json:"diskIops,omitempty" tf:"disk_iops,omitempty"`
@@ -285,6 +294,7 @@ type AnalyticsSpecsParameters struct {
 }
 
 type AutoScalingInitParameters struct {
+
 	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details. On the contrary, if a sharded cluster makes use of deprecated num_shards attribute (with values > 1), instance size auto-scaling will be performed uniformly across all shards in the cluster.
 	ComputeEnabled *bool `json:"computeEnabled,omitempty" tf:"compute_enabled,omitempty"`
 
@@ -302,6 +312,7 @@ type AutoScalingInitParameters struct {
 }
 
 type AutoScalingObservation struct {
+
 	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details. On the contrary, if a sharded cluster makes use of deprecated num_shards attribute (with values > 1), instance size auto-scaling will be performed uniformly across all shards in the cluster.
 	ComputeEnabled *bool `json:"computeEnabled,omitempty" tf:"compute_enabled,omitempty"`
 
@@ -319,6 +330,7 @@ type AutoScalingObservation struct {
 }
 
 type AutoScalingParameters struct {
+
 	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details. On the contrary, if a sharded cluster makes use of deprecated num_shards attribute (with values > 1), instance size auto-scaling will be performed uniformly across all shards in the cluster.
 	// +kubebuilder:validation:Optional
 	ComputeEnabled *bool `json:"computeEnabled,omitempty" tf:"compute_enabled,omitempty"`
@@ -341,6 +353,7 @@ type AutoScalingParameters struct {
 }
 
 type BiConnectorConfigInitParameters struct {
+
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
@@ -349,6 +362,7 @@ type BiConnectorConfigInitParameters struct {
 }
 
 type BiConnectorConfigObservation struct {
+
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
@@ -357,6 +371,7 @@ type BiConnectorConfigObservation struct {
 }
 
 type BiConnectorConfigParameters struct {
+
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
 	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
@@ -367,6 +382,7 @@ type BiConnectorConfigParameters struct {
 }
 
 type ClusterInitParameters struct {
+
 	// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set accept_data_risks_and_force_replica_set_reconfig to the current date. Learn more about Reconfiguring a Replica Set during a regional outage here.
 	// Submit this field alongside your topology reconfiguration to request a new regional outage resistant topology
 	AcceptDataRisksAndForceReplicaSetReconfig *string `json:"acceptDataRisksAndForceReplicaSetReconfig,omitempty" tf:"accept_data_risks_and_force_replica_set_reconfig,omitempty"`
@@ -443,6 +459,7 @@ type ClusterInitParameters struct {
 }
 
 type ClusterObservation struct {
+
 	// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set accept_data_risks_and_force_replica_set_reconfig to the current date. Learn more about Reconfiguring a Replica Set during a regional outage here.
 	// Submit this field alongside your topology reconfiguration to request a new regional outage resistant topology
 	AcceptDataRisksAndForceReplicaSetReconfig *string `json:"acceptDataRisksAndForceReplicaSetReconfig,omitempty" tf:"accept_data_risks_and_force_replica_set_reconfig,omitempty"`
@@ -541,6 +558,7 @@ type ClusterObservation struct {
 }
 
 type ClusterParameters struct {
+
 	// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set accept_data_risks_and_force_replica_set_reconfig to the current date. Learn more about Reconfiguring a Replica Set during a regional outage here.
 	// Submit this field alongside your topology reconfiguration to request a new regional outage resistant topology
 	// +kubebuilder:validation:Optional
@@ -642,9 +660,11 @@ type ClusterParameters struct {
 	VersionReleaseSystem *string `json:"versionReleaseSystem,omitempty" tf:"version_release_system,omitempty"`
 }
 
-type ConnectionStringsInitParameters struct{}
+type ConnectionStringsInitParameters struct {
+}
 
 type ConnectionStringsObservation struct {
+
 	// Network-peering-endpoint-aware mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private *string `json:"private,omitempty" tf:"private,omitempty"`
 
@@ -661,9 +681,11 @@ type ConnectionStringsObservation struct {
 	StandardSrv *string `json:"standardSrv,omitempty" tf:"standard_srv,omitempty"`
 }
 
-type ConnectionStringsParameters struct{}
+type ConnectionStringsParameters struct {
+}
 
 type ElectableSpecsInitParameters struct {
+
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, instance_size is set to "M30" or greater (not including "Mxx_NVME" tiers), and ebs_volume_type is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops *float64 `json:"diskIops,omitempty" tf:"disk_iops,omitempty"`
 
@@ -681,6 +703,7 @@ type ElectableSpecsInitParameters struct {
 }
 
 type ElectableSpecsObservation struct {
+
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, instance_size is set to "M30" or greater (not including "Mxx_NVME" tiers), and ebs_volume_type is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops *float64 `json:"diskIops,omitempty" tf:"disk_iops,omitempty"`
 
@@ -698,6 +721,7 @@ type ElectableSpecsObservation struct {
 }
 
 type ElectableSpecsParameters struct {
+
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, instance_size is set to "M30" or greater (not including "Mxx_NVME" tiers), and ebs_volume_type is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	// +kubebuilder:validation:Optional
 	DiskIops *float64 `json:"diskIops,omitempty" tf:"disk_iops,omitempty"`
@@ -719,9 +743,11 @@ type ElectableSpecsParameters struct {
 	NodeCount *float64 `json:"nodeCount,omitempty" tf:"node_count,omitempty"`
 }
 
-type EndpointsInitParameters struct{}
+type EndpointsInitParameters struct {
+}
 
 type EndpointsObservation struct {
+
 	// Unique identifier of the private endpoint.
 	EndpointID *string `json:"endpointId,omitempty" tf:"endpoint_id,omitempty"`
 
@@ -733,9 +759,11 @@ type EndpointsObservation struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
-type EndpointsParameters struct{}
+type EndpointsParameters struct {
+}
 
 type LabelsInitParameters struct {
+
 	// The key that you want to write.
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
 
@@ -744,6 +772,7 @@ type LabelsInitParameters struct {
 }
 
 type LabelsObservation struct {
+
 	// The key that you want to write.
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
 
@@ -752,6 +781,7 @@ type LabelsObservation struct {
 }
 
 type LabelsParameters struct {
+
 	// The key that you want to write.
 	// +kubebuilder:validation:Optional
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
@@ -762,11 +792,13 @@ type LabelsParameters struct {
 }
 
 type PinnedFcvInitParameters struct {
+
 	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 }
 
 type PinnedFcvObservation struct {
+
 	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 
@@ -775,14 +807,17 @@ type PinnedFcvObservation struct {
 }
 
 type PinnedFcvParameters struct {
+
 	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
 	// +kubebuilder:validation:Optional
 	ExpirationDate *string `json:"expirationDate" tf:"expiration_date,omitempty"`
 }
 
-type PrivateEndpointInitParameters struct{}
+type PrivateEndpointInitParameters struct {
+}
 
 type PrivateEndpointObservation struct {
+
 	// Private-endpoint-aware mongodb://connection string for this private endpoint.
 	ConnectionString *string `json:"connectionString,omitempty" tf:"connection_string,omitempty"`
 
@@ -799,9 +834,11 @@ type PrivateEndpointObservation struct {
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
-type PrivateEndpointParameters struct{}
+type PrivateEndpointParameters struct {
+}
 
 type ReadOnlySpecsInitParameters struct {
+
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, instance_size is set to "M30" or greater (not including "Mxx_NVME" tiers), and ebs_volume_type is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops *float64 `json:"diskIops,omitempty" tf:"disk_iops,omitempty"`
 
@@ -819,6 +856,7 @@ type ReadOnlySpecsInitParameters struct {
 }
 
 type ReadOnlySpecsObservation struct {
+
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, instance_size is set to "M30" or greater (not including "Mxx_NVME" tiers), and ebs_volume_type is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops *float64 `json:"diskIops,omitempty" tf:"disk_iops,omitempty"`
 
@@ -836,6 +874,7 @@ type ReadOnlySpecsObservation struct {
 }
 
 type ReadOnlySpecsParameters struct {
+
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, instance_size is set to "M30" or greater (not including "Mxx_NVME" tiers), and ebs_volume_type is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	// +kubebuilder:validation:Optional
 	DiskIops *float64 `json:"diskIops,omitempty" tf:"disk_iops,omitempty"`
@@ -858,6 +897,7 @@ type ReadOnlySpecsParameters struct {
 }
 
 type RegionConfigsInitParameters struct {
+
 	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the analytics_auto_scaling attribute must be the same for all region_configs of a cluster. See below
 	AnalyticsAutoScaling []AnalyticsAutoScalingInitParameters `json:"analyticsAutoScaling,omitempty" tf:"analytics_auto_scaling,omitempty"`
 
@@ -888,6 +928,7 @@ type RegionConfigsInitParameters struct {
 }
 
 type RegionConfigsObservation struct {
+
 	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the analytics_auto_scaling attribute must be the same for all region_configs of a cluster. See below
 	AnalyticsAutoScaling []AnalyticsAutoScalingObservation `json:"analyticsAutoScaling,omitempty" tf:"analytics_auto_scaling,omitempty"`
 
@@ -918,6 +959,7 @@ type RegionConfigsObservation struct {
 }
 
 type RegionConfigsParameters struct {
+
 	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the analytics_auto_scaling attribute must be the same for all region_configs of a cluster. See below
 	// +kubebuilder:validation:Optional
 	AnalyticsAutoScaling []AnalyticsAutoScalingParameters `json:"analyticsAutoScaling,omitempty" tf:"analytics_auto_scaling,omitempty"`
@@ -957,6 +999,7 @@ type RegionConfigsParameters struct {
 }
 
 type ReplicationSpecsInitParameters struct {
+
 	// Provide this value if you set a cluster_type of SHARDED or GEOSHARDED. Omit this value if you selected a cluster_type of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a num_shards value of 1 and a cluster_type of SHARDED, Atlas deploys a single-shard sharded cluster. Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
 	// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see Convert a replica set to a sharded cluster documentation and Convert a replica set to a sharded cluster tutorial. (DEPRECATED) To learn more, see the 1.18.0 Upgrade Guide.
 	NumShards *float64 `json:"numShards,omitempty" tf:"num_shards,omitempty"`
@@ -969,6 +1012,7 @@ type ReplicationSpecsInitParameters struct {
 }
 
 type ReplicationSpecsObservation struct {
+
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is "providerName:regionName" = "containerId". Example AWS:US_EAST_1" = "61e0797dde08fb498ca11a71.
 	// +mapType=granular
 	ContainerID map[string]*string `json:"containerId,omitempty" tf:"container_id,omitempty"`
@@ -994,6 +1038,7 @@ type ReplicationSpecsObservation struct {
 }
 
 type ReplicationSpecsParameters struct {
+
 	// Provide this value if you set a cluster_type of SHARDED or GEOSHARDED. Omit this value if you selected a cluster_type of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a num_shards value of 1 and a cluster_type of SHARDED, Atlas deploys a single-shard sharded cluster. Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
 	// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see Convert a replica set to a sharded cluster documentation and Convert a replica set to a sharded cluster tutorial. (DEPRECATED) To learn more, see the 1.18.0 Upgrade Guide.
 	// +kubebuilder:validation:Optional
@@ -1009,6 +1054,7 @@ type ReplicationSpecsParameters struct {
 }
 
 type TagsInitParameters struct {
+
 	// The key that you want to write.
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
 
@@ -1017,6 +1063,7 @@ type TagsInitParameters struct {
 }
 
 type TagsObservation struct {
+
 	// The key that you want to write.
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
 
@@ -1025,6 +1072,7 @@ type TagsObservation struct {
 }
 
 type TagsParameters struct {
+
 	// The key that you want to write.
 	// +kubebuilder:validation:Optional
 	Key *string `json:"key" tf:"key,omitempty"`
