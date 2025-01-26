@@ -103,9 +103,9 @@ jobs:
           key: ${{ runner.os }}-pkg-${{ hashFiles('**/go.sum') }}
           restore-keys: ${{ runner.os }}-pkg-
 
-        # Atlas docs are malformed
-      - name: Fix docs
-        run: ./hack/fix-docs.sh
+      # Atlas docs are malformed. Don't need this if we're not checking diff
+      # - name: Fix docs
+      #   run: ./hack/fix-docs.sh
 
       - name: Vendor Dependencies
         run: make vendor vendor.check
