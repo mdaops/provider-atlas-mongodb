@@ -103,6 +103,10 @@ jobs:
           key: ${{ runner.os }}-pkg-${{ hashFiles('**/go.sum') }}
           restore-keys: ${{ runner.os }}-pkg-
 
+        # Atlas docs are malformed
+      - name: Vendor Dependencies
+        run: ./hack/fix-docs.sh
+
       - name: Vendor Dependencies
         run: make vendor vendor.check
 
