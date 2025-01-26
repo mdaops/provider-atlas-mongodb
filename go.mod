@@ -1,4 +1,4 @@
-module github.com/upbound/upjet-provider-template
+module github.com/mdaops/provider-atlas-mongodb
 
 go 1.21
 

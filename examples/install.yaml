@@ -1,6 +1,6 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
-  name: upjet-provider-template
+  name: provider-atlas-mongodb
 spec:
-  package: upbound/upjet-provider-template:v0.1.0
+  package: mdaops/provider-atlas-mongodb:v0.1.0
