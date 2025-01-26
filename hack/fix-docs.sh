@@ -10,8 +10,6 @@ description: |-
 ---' | cat - "$file" > temp && mv temp "$file"
 }
 
-ls
-
 for file in .work/mongodb/mongodbatlas/docs/resources/*.md; do
     add_frontmatter "$file"
 done
