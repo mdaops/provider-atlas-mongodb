@@ -9,6 +9,7 @@ import (
 
 	"github.com/crossplane/upjet/pkg/controller"
 
+	cluster "github.com/mdaops/provider-atlas-mongodb/internal/controller/advanced/cluster"
 	project "github.com/mdaops/provider-atlas-mongodb/internal/controller/project/project"
 	providerconfig "github.com/mdaops/provider-atlas-mongodb/internal/controller/providerconfig"
 )
@@ -17,6 +18,7 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		cluster.Setup,
 		project.Setup,
 		providerconfig.Setup,
 	} {
