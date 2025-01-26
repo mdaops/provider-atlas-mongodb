@@ -27,6 +27,11 @@ const (
 	errUnmarshalCredentials = "cannot unmarshal atlas-mongodb credentials as JSON"
 )
 
+const (
+	publicKey  = "public_key"
+	privateKey = "private_key"
+)
+
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
 // returns Terraform provider setup configuration
 func TerraformSetupBuilder(version, providerSource, providerVersion string) terraform.SetupFn {
@@ -62,11 +67,14 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
-		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
+		ps.Configuration = map[string]any{}
+		if v, ok := creds[publicKey]; ok {
+			ps.Configuration[publicKey] = v
+		}
+		if v, ok := creds[privateKey]; ok {
+			ps.Configuration[privateKey] = v
+		}
+
 		return ps, nil
 	}
 }

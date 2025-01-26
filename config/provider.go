@@ -10,7 +10,7 @@ import (
 
 	ujconfig "github.com/crossplane/upjet/pkg/config"
 
-	"github.com/mdaops/provider-atlas-mongodb/config/null"
+	"github.com/mdaops/provider-atlas-mongodb/config/project"
 )
 
 const (
@@ -35,8 +35,7 @@ func GetProvider() *ujconfig.Provider {
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
-		// add custom config functions
-		null.Configure,
+		project.Configure,
 	} {
 		configure(pc)
 	}

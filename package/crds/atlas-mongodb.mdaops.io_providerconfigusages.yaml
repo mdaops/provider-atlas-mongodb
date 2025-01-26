@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: providerconfigusages.atlas-mongodb.upbound.io
+  name: providerconfigusages.atlas-mongodb.mdaops.io
 spec:
-  group: atlas-mongodb.upbound.io
+  group: atlas-mongodb.mdaops.io
   names:
     categories:
     - crossplane
