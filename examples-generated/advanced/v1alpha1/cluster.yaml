@@ -1,4 +1,4 @@
-apiVersion: advanced.mdaops.io/v1alpha1
+apiVersion: advanced.mongoatlas.io/v1alpha1
 kind: Cluster
 metadata:
   annotations:

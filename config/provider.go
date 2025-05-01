@@ -5,7 +5,6 @@ Copyright 2021 Upbound Inc.
 package config
 
 import (
-	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
 	ujconfig "github.com/crossplane/upjet/pkg/config"
@@ -27,7 +26,7 @@ var providerMetadata string
 // GetProvider returns provider configuration
 func GetProvider() *ujconfig.Provider {
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
-		ujconfig.WithRootGroup("mdaops.io"),
+		ujconfig.WithRootGroup("mongoatlas.io"),
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithFeaturesPackage("internal/features"),
 		ujconfig.WithDefaultResourceOptions(

@@ -13,7 +13,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "atlas-mongodb.mdaops.io"
+	Group   = "mongoatlas.io"
 	Version = "v1beta1"
 )
 
