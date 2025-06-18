@@ -10,21 +10,73 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/mdaops/provider-atlas-mongodb/apis/advanced/v1alpha1"
+	v1alpha1 "github.com/mdaops/provider-atlas-mongodb/apis/access/v1alpha1"
+	v1alpha1advancedcluster "github.com/mdaops/provider-atlas-mongodb/apis/advancedcluster/v1alpha1"
 	v1alpha1alert "github.com/mdaops/provider-atlas-mongodb/apis/alert/v1alpha1"
+	v1alpha1api "github.com/mdaops/provider-atlas-mongodb/apis/api/v1alpha1"
+	v1alpha1backup "github.com/mdaops/provider-atlas-mongodb/apis/backup/v1alpha1"
+	v1alpha1cloud "github.com/mdaops/provider-atlas-mongodb/apis/cloud/v1alpha1"
+	v1alpha1cluster "github.com/mdaops/provider-atlas-mongodb/apis/cluster/v1alpha1"
+	v1alpha1custom "github.com/mdaops/provider-atlas-mongodb/apis/custom/v1alpha1"
+	v1alpha1data "github.com/mdaops/provider-atlas-mongodb/apis/data/v1alpha1"
+	v1alpha1database "github.com/mdaops/provider-atlas-mongodb/apis/database/v1alpha1"
+	v1alpha1encryption "github.com/mdaops/provider-atlas-mongodb/apis/encryption/v1alpha1"
+	v1alpha1event "github.com/mdaops/provider-atlas-mongodb/apis/event/v1alpha1"
+	v1alpha1federated "github.com/mdaops/provider-atlas-mongodb/apis/federated/v1alpha1"
+	v1alpha1global "github.com/mdaops/provider-atlas-mongodb/apis/global/v1alpha1"
+	v1alpha1ldap "github.com/mdaops/provider-atlas-mongodb/apis/ldap/v1alpha1"
+	v1alpha1maintenance "github.com/mdaops/provider-atlas-mongodb/apis/maintenance/v1alpha1"
+	v1alpha1mongodb "github.com/mdaops/provider-atlas-mongodb/apis/mongodb/v1alpha1"
+	v1alpha1mongodbatlas "github.com/mdaops/provider-atlas-mongodb/apis/mongodbatlas/v1alpha1"
+	v1alpha1network "github.com/mdaops/provider-atlas-mongodb/apis/network/v1alpha1"
+	v1alpha1online "github.com/mdaops/provider-atlas-mongodb/apis/online/v1alpha1"
+	v1alpha1org "github.com/mdaops/provider-atlas-mongodb/apis/org/v1alpha1"
+	v1alpha1private "github.com/mdaops/provider-atlas-mongodb/apis/private/v1alpha1"
+	v1alpha1privatelink "github.com/mdaops/provider-atlas-mongodb/apis/privatelink/v1alpha1"
 	v1alpha1project "github.com/mdaops/provider-atlas-mongodb/apis/project/v1alpha1"
+	v1alpha1search "github.com/mdaops/provider-atlas-mongodb/apis/search/v1alpha1"
+	v1alpha1serverless "github.com/mdaops/provider-atlas-mongodb/apis/serverless/v1alpha1"
+	v1alpha1stream "github.com/mdaops/provider-atlas-mongodb/apis/stream/v1alpha1"
+	v1alpha1third "github.com/mdaops/provider-atlas-mongodb/apis/third/v1alpha1"
 	v1alpha1apis "github.com/mdaops/provider-atlas-mongodb/apis/v1alpha1"
 	v1beta1 "github.com/mdaops/provider-atlas-mongodb/apis/v1beta1"
+	v1alpha1x509 "github.com/mdaops/provider-atlas-mongodb/apis/x509/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1advancedcluster.SchemeBuilder.AddToScheme,
 		v1alpha1alert.SchemeBuilder.AddToScheme,
+		v1alpha1api.SchemeBuilder.AddToScheme,
+		v1alpha1backup.SchemeBuilder.AddToScheme,
+		v1alpha1cloud.SchemeBuilder.AddToScheme,
+		v1alpha1cluster.SchemeBuilder.AddToScheme,
+		v1alpha1custom.SchemeBuilder.AddToScheme,
+		v1alpha1data.SchemeBuilder.AddToScheme,
+		v1alpha1database.SchemeBuilder.AddToScheme,
+		v1alpha1encryption.SchemeBuilder.AddToScheme,
+		v1alpha1event.SchemeBuilder.AddToScheme,
+		v1alpha1federated.SchemeBuilder.AddToScheme,
+		v1alpha1global.SchemeBuilder.AddToScheme,
+		v1alpha1ldap.SchemeBuilder.AddToScheme,
+		v1alpha1maintenance.SchemeBuilder.AddToScheme,
+		v1alpha1mongodb.SchemeBuilder.AddToScheme,
+		v1alpha1mongodbatlas.SchemeBuilder.AddToScheme,
+		v1alpha1network.SchemeBuilder.AddToScheme,
+		v1alpha1online.SchemeBuilder.AddToScheme,
+		v1alpha1org.SchemeBuilder.AddToScheme,
+		v1alpha1private.SchemeBuilder.AddToScheme,
+		v1alpha1privatelink.SchemeBuilder.AddToScheme,
 		v1alpha1project.SchemeBuilder.AddToScheme,
+		v1alpha1search.SchemeBuilder.AddToScheme,
+		v1alpha1serverless.SchemeBuilder.AddToScheme,
+		v1alpha1stream.SchemeBuilder.AddToScheme,
+		v1alpha1third.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
+		v1alpha1x509.SchemeBuilder.AddToScheme,
 	)
 }
 

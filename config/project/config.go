@@ -1,6 +1,8 @@
 package project
 
-import "github.com/crossplane/upjet/pkg/config"
+import (
+	"github.com/crossplane/upjet/pkg/config"
+)
 
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("mongodbatlas_project", func(r *config.Resource) {

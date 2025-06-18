@@ -1,0 +1,30 @@
+apiVersion: privatelink.mongoatlas.io/v1alpha1
+kind: EndpointServiceDataFederationOnlineArchive
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatelink/v1alpha1/endpointservicedatafederationonlinearchive
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    comment: Test
+    customerEndpointDnsName: ${aws_vpc_endpoint.test.dns_entry[0].dns_name}
+    endpointId: ${aws_vpc_endpoint.test.id}
+    projectId: ${mongodbatlas_project.atlas-project.id}
+    providerName: AWS
+    region: US_EAST_1
+
+---
+
+apiVersion: project.mongoatlas.io/v1alpha1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatelink/v1alpha1/endpointservicedatafederationonlinearchive
+  labels:
+    testing.upbound.io/example-name: atlas-project
+  name: atlas-project
+spec:
+  forProvider:
+    orgId: ${var.atlas_org_id}

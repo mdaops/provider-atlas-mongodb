@@ -1,0 +1,59 @@
+apiVersion: cloud.mongoatlas.io/v1alpha1
+kind: BackupSnapshot
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/backupsnapshot
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    clusterName: NAME OF CLUSTER
+    description: myDescription
+    projectId: ${mongodbatlas_advanced_cluster.my_cluster.project_id}
+    retentionInDays: 1
+
+---
+
+apiVersion: advancedcluster.mongoatlas.io/v1alpha1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/backupsnapshot
+  labels:
+    testing.upbound.io/example-name: my_cluster
+  name: my-cluster
+spec:
+  forProvider:
+    backupEnabled: true
+    clusterType: REPLICASET
+    name: MyCluster
+    projectSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    replicationSpecs:
+    - regionConfigs:
+      - electableSpecs:
+        - instanceSize: M10
+          nodeCount: 3
+        priority: 7
+        providerName: AWS
+        regionName: EU_WEST_2
+
+---
+
+apiVersion: cloud.mongoatlas.io/v1alpha1
+kind: BackupSnapshotRestoreJob
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/backupsnapshot
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    clusterName: MyCluster
+    deliveryTypeConfig:
+    - download: true
+    projectId: <PROJECT-ID>
+    snapshotId: ${mongodbatlas_cloud_backup_snapshot.test.snapshot_id}

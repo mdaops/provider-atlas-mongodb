@@ -1,0 +1,14 @@
+apiVersion: serverless.mongoatlas.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: serverless/v1alpha1/instance
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    projectId: <PROJECT_ID>
+    providerSettingsBackingProviderName: AWS
+    providerSettingsProviderName: SERVERLESS
+    providerSettingsRegionName: US_EAST_1

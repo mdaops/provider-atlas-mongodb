@@ -10,4 +10,7 @@ package v1alpha1
 func (tr *APIKey) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *Invitation) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Project) Hub() {}

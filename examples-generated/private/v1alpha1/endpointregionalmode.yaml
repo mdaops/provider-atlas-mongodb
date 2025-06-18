@@ -1,0 +1,107 @@
+apiVersion: private.mongoatlas.io/v1alpha1
+kind: EndpointRegionalMode
+metadata:
+  annotations:
+    meta.upbound.io/example-id: private/v1alpha1/endpointregionalmode
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    enabled: true
+    projectId: ${var.atlasprojectid}
+
+---
+
+apiVersion: advancedcluster.mongoatlas.io/v1alpha1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: private/v1alpha1/endpointregionalmode
+  labels:
+    testing.upbound.io/example-name: cluster_atlas
+  name: cluster-atlas
+spec:
+  forProvider:
+    backupEnabled: true
+    clusterType: GEOSHARDED
+    name: ${var.cluster_name}
+    projectSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    replicationSpecs:
+    - regionConfigs:
+      - electableSpecs:
+        - instanceSize: M30
+          nodeCount: 3
+        priority: 7
+        providerName: AWS
+        regionName: ${var.atlas_region_east}
+      - electableSpecs:
+        - instanceSize: M30
+          nodeCount: 2
+        priority: 6
+        providerName: AWS
+        regionName: ${var.atlas_region_west}
+      zoneName: Zone 1
+    - regionConfigs:
+      - electableSpecs:
+        - instanceSize: M30
+          nodeCount: 3
+        priority: 7
+        providerName: AWS
+        regionName: ${var.atlas_region_east}
+      - electableSpecs:
+        - instanceSize: M30
+          nodeCount: 2
+        priority: 6
+        providerName: AWS
+        regionName: ${var.atlas_region_west}
+      zoneName: Zone 1
+
+---
+
+apiVersion: privatelink.mongoatlas.io/v1alpha1
+kind: Endpoint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: private/v1alpha1/endpointregionalmode
+  labels:
+    testing.upbound.io/example-name: test_east
+  name: test-east
+spec:
+  forProvider:
+    projectId: var.atlasprojectid
+
+---
+
+apiVersion: privatelink.mongoatlas.io/v1alpha1
+kind: Endpoint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: private/v1alpha1/endpointregionalmode
+  labels:
+    testing.upbound.io/example-name: test_west
+  name: test-west
+spec:
+  forProvider:
+    projectId: ${var.atlasprojectid}
+    providerName: AWS
+    region: US_WEST_1
+
+---
+
+apiVersion: privatelink.mongoatlas.io/v1alpha1
+kind: EndpointService
+metadata:
+  annotations:
+    meta.upbound.io/example-id: private/v1alpha1/endpointregionalmode
+  labels:
+    testing.upbound.io/example-name: test_west
+  name: test-west
+spec:
+  forProvider:
+    endpointServiceId: ${aws_vpc_endpoint.test_west.id}
+    privateLinkId: ${mongodbatlas_privatelink_endpoint.test_west.private_link_id}
+    projectId: ${var.atlasprojectid}
+    providerName: AWS

@@ -1,0 +1,30 @@
+apiVersion: privatelink.mongoatlas.io/v1alpha1
+kind: EndpointService
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatelink/v1alpha1/endpointservice
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    endpointServiceId: ${aws_vpc_endpoint.ptfe_service.id}
+    privateLinkId: ${mongodbatlas_privatelink_endpoint.test.private_link_id}
+    projectId: ${mongodbatlas_privatelink_endpoint.test.project_id}
+    providerName: AWS
+
+---
+
+apiVersion: privatelink.mongoatlas.io/v1alpha1
+kind: Endpoint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatelink/v1alpha1/endpointservice
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    projectId: <PROJECT_ID>
+    providerName: AWS
+    region: US_EAST_1

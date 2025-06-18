@@ -9,6 +9,8 @@ import (
 
 	ujconfig "github.com/crossplane/upjet/pkg/config"
 
+	advancedcluster "github.com/mdaops/provider-atlas-mongodb/config/advanced-cluster"
+	alertconfiguration "github.com/mdaops/provider-atlas-mongodb/config/alert-configuration"
 	"github.com/mdaops/provider-atlas-mongodb/config/project"
 )
 
@@ -27,14 +29,22 @@ var providerMetadata string
 func GetProvider() *ujconfig.Provider {
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		ujconfig.WithRootGroup("mongoatlas.io"),
-		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithFeaturesPackage("internal/features"),
-		ujconfig.WithDefaultResourceOptions(
-			ExternalNameConfigurations(),
-		))
+		ujconfig.WithDefaultResourceOptions(),
+		ujconfig.WithSkipList([]string{
+			"mongodbatlas_project_ip_access_list",
+			"mongodbatlas_push_based_log_export",
+			"mongodbatlas_stream_connection",
+			"mongodbatlas_stream_instance",
+			"mongodbatlas_stream_processor",
+			"mongodbatlas_search_deployment",
+		}),
+	)
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		project.Configure,
+		advancedcluster.Configure,
+		alertconfiguration.Configure,
 	} {
 		configure(pc)
 	}

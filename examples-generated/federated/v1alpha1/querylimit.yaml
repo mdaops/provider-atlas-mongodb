@@ -1,0 +1,15 @@
+apiVersion: federated.mongoatlas.io/v1alpha1
+kind: QueryLimit
+metadata:
+  annotations:
+    meta.upbound.io/example-id: federated/v1alpha1/querylimit
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    limitName: bytesProcessed.weekly
+    overrunPolicy: BLOCK
+    projectId: 64707f06c519c20c3a2b1b03
+    tenantName: FederatedDatabseInstance0
+    value: 5147483648

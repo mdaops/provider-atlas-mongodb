@@ -1,0 +1,33 @@
+apiVersion: ldap.mongoatlas.io/v1alpha1
+kind: Configuration
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ldap/v1alpha1/configuration
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    authenticationEnabled: true
+    bindPasswordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    bindUsername: USERNAME
+    hostname: HOSTNAME
+    port: 636
+    projectId: ${mongodbatlas_project.test.id}
+
+---
+
+apiVersion: project.mongoatlas.io/v1alpha1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ldap/v1alpha1/configuration
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    orgId: ORG ID

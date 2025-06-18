@@ -1,0 +1,53 @@
+apiVersion: encryption.mongoatlas.io/v1alpha1
+kind: AtRestPrivateEndpoint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: encryption/v1alpha1/atrestprivateendpoint
+  labels:
+    testing.upbound.io/example-name: endpoint
+  name: endpoint
+spec:
+  forProvider:
+    cloudProvider: AZURE
+    projectId: ${mongodbatlas_encryption_at_rest.ear.project_id}
+    regionName: ${var.azure_region_name}
+
+---
+
+apiVersion: encryption.mongoatlas.io/v1alpha1
+kind: AtRest
+metadata:
+  annotations:
+    meta.upbound.io/example-id: encryption/v1alpha1/atrestprivateendpoint
+  labels:
+    testing.upbound.io/example-name: ear
+  name: ear
+spec:
+  forProvider:
+    azureKeyVaultConfig:
+    - azureEnvironment: AZURE
+      clientIdSecretRef:
+        key: example-key
+        name: example-secret
+        namespace: upbound-system
+      enabled: true
+      keyIdentifierSecretRef:
+        key: example-key
+        name: example-secret
+        namespace: upbound-system
+      keyVaultName: ${var.azure_key_vault_name}
+      requirePrivateNetworking: true
+      resourceGroupName: ${var.azure_resource_group_name}
+      secretSecretRef:
+        key: example-key
+        name: example-secret
+        namespace: upbound-system
+      subscriptionIdSecretRef:
+        key: example-key
+        name: example-secret
+        namespace: upbound-system
+      tenantIdSecretRef:
+        key: example-key
+        name: example-secret
+        namespace: upbound-system
+    projectId: ${var.atlas_project_id}

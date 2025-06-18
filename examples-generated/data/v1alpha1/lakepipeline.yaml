@@ -1,0 +1,67 @@
+apiVersion: data.mongoatlas.io/v1alpha1
+kind: LakePipeline
+metadata:
+  annotations:
+    meta.upbound.io/example-id: data/v1alpha1/lakepipeline
+  labels:
+    testing.upbound.io/example-name: pipeline
+  name: pipeline
+spec:
+  forProvider:
+    projectId: ${mongodbatlas_project.projectTest.project_id}
+    sink:
+    - partitionFields:
+      - name: access
+        order: 0
+      type: DLS
+    source:
+    - clusterName: NAME OF CLUSTER
+      collectionName: listingsAndReviews
+      databaseName: sample_airbnb
+      type: ON_DEMAND_CPS
+    transformations:
+    - field: test
+      type: EXCLUDE
+    - field: test22
+      type: EXCLUDE
+
+---
+
+apiVersion: advancedcluster.mongoatlas.io/v1alpha1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: data/v1alpha1/lakepipeline
+  labels:
+    testing.upbound.io/example-name: automated_backup_test
+  name: automated-backup-test
+spec:
+  forProvider:
+    backupEnabled: true
+    clusterType: REPLICASET
+    name: automated-backup-test
+    projectSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    replicationSpecs:
+    - regionConfigs:
+      - electableSpecs:
+        - instanceSize: M10
+          nodeCount: 3
+        priority: 7
+        providerName: GCP
+        regionName: US_EAST_4
+
+---
+
+apiVersion: project.mongoatlas.io/v1alpha1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: data/v1alpha1/lakepipeline
+  labels:
+    testing.upbound.io/example-name: projectTest
+  name: projecttest
+spec:
+  forProvider:
+    orgId: ORGANIZATION ID
