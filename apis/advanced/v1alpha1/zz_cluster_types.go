@@ -435,6 +435,9 @@ type ClusterInitParameters struct {
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled *bool `json:"pitEnabled,omitempty" tf:"pit_enabled,omitempty"`
 
+	// Unique ID for the project to create the database user.
+	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
 	// Flag that enables or disables log redaction, see the manual for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. Note: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
 	RedactClientLogData *bool `json:"redactClientLogData,omitempty" tf:"redact_client_log_data,omitempty"`
 
@@ -633,8 +636,8 @@ type ClusterParameters struct {
 	PitEnabled *bool `json:"pitEnabled,omitempty" tf:"pit_enabled,omitempty"`
 
 	// Unique ID for the project to create the database user.
-	// +kubebuilder:validation:Required
-	ProjectID *string `json:"projectId" tf:"project_id,omitempty"`
+	// +kubebuilder:validation:Optional
+	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// Flag that enables or disables log redaction, see the manual for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. Note: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
 	// +kubebuilder:validation:Optional
@@ -1130,6 +1133,7 @@ type Cluster struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clusterType) || (has(self.initProvider) && has(self.initProvider.clusterType))",message="spec.forProvider.clusterType is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.replicationSpecs) || (has(self.initProvider) && has(self.initProvider.replicationSpecs))",message="spec.forProvider.replicationSpecs is a required parameter"
 	Spec   ClusterSpec   `json:"spec"`
 	Status ClusterStatus `json:"status,omitempty"`
