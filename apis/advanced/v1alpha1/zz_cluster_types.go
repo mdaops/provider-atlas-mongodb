@@ -421,6 +421,9 @@ type ClusterInitParameters struct {
 	// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have not reached End of Live for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see documentation. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set version_release_system CONTINUOUS, the resource returns an error. Either clear this parameter or set version_release_system: LTS.
 	MongoDBMajorVersion *string `json:"mongoDbMajorVersion,omitempty" tf:"mongo_db_major_version,omitempty"`
 
+	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. WARNING Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a paused cluster you will get a CANNOT_UPDATE_PAUSED_CLUSTER error. See Considerations for Paused Clusters.
 	// NOTE Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.   If you prefer to allow the automated change of state to unpaused use:
 	// lifecycle { ignore_changes = [paused] }
@@ -513,6 +516,9 @@ type ClusterObservation struct {
 
 	// Version of MongoDB the cluster runs, in major-version.minor-version format.
 	MongoDBVersion *string `json:"mongoDbVersion,omitempty" tf:"mongo_db_version,omitempty"`
+
+	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. WARNING Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a paused cluster you will get a CANNOT_UPDATE_PAUSED_CLUSTER error. See Considerations for Paused Clusters.
 	// NOTE Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.   If you prefer to allow the automated change of state to unpaused use:
@@ -607,6 +613,10 @@ type ClusterParameters struct {
 	// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have not reached End of Live for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see documentation. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set version_release_system CONTINUOUS, the resource returns an error. Either clear this parameter or set version_release_system: LTS.
 	// +kubebuilder:validation:Optional
 	MongoDBMajorVersion *string `json:"mongoDbMajorVersion,omitempty" tf:"mongo_db_major_version,omitempty"`
+
+	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. WARNING Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a paused cluster you will get a CANNOT_UPDATE_PAUSED_CLUSTER error. See Considerations for Paused Clusters.
 	// NOTE Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.   If you prefer to allow the automated change of state to unpaused use:
@@ -1119,6 +1129,7 @@ type Cluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clusterType) || (has(self.initProvider) && has(self.initProvider.clusterType))",message="spec.forProvider.clusterType is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.replicationSpecs) || (has(self.initProvider) && has(self.initProvider.replicationSpecs))",message="spec.forProvider.replicationSpecs is a required parameter"
 	Spec   ClusterSpec   `json:"spec"`
 	Status ClusterStatus `json:"status,omitempty"`

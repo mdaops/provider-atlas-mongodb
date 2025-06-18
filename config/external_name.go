@@ -1,7 +1,3 @@
-/*
-Copyright 2022 Upbound Inc.
-*/
-
 package config
 
 import "github.com/crossplane/upjet/pkg/config"
@@ -10,7 +6,8 @@ import "github.com/crossplane/upjet/pkg/config"
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	"mongodbatlas_project":          config.IdentifierFromProvider,
-	"mongodbatlas_advanced_cluster": config.TemplatedStringAsIdentifier("name", "{{.parameters.project_id}}-{{.external_name}}"),
+	"mongodbatlas_advanced_cluster": config.TemplatedStringAsIdentifier("", "{{.parameters.project_id}}-{{.external_name}}"),
+	"mongodbatlas_project_api_key":  config.TemplatedStringAsIdentifier("", "{{.parameters.project_id}}-{{.external_name}}"),
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

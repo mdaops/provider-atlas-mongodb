@@ -9,6 +9,7 @@ metadata:
 spec:
   forProvider:
     clusterType: REPLICASET
+    name: NAME OF CLUSTER
     projectId: PROJECT ID
     replicationSpecs:
     - regionConfigs:

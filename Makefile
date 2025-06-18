@@ -1,13 +1,8 @@
-# ====================================================================================
-# Setup Project
-
 PROJECT_NAME ?= provider-atlas-mongodb
 PROJECT_REPO ?= github.com/mdaops/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION ?= 1.5.7
 
-# Do not allow a version of terraform greater than 1.5.x, due to versions 1.6+ being
-# licensed under BSL, which is not permitted.
 TERRAFORM_VERSION_VALID := $(shell [ "$(TERRAFORM_VERSION)" = "`printf "$(TERRAFORM_VERSION)\n1.6" | sort -V | head -n1`" ] && echo 1 || echo 0)
 
 export TERRAFORM_PROVIDER_SOURCE ?= mongodb/mongodbatlas
@@ -154,21 +149,15 @@ cobertura:
 		grep -v zz_ | \
 		$(GOCOVER_COBERTURA) > $(GO_TEST_OUTPUT)/cobertura-coverage.xml
 
-# Update the submodules, such as the common build scripts.
 submodules:
 	@git submodule sync
 	@git submodule update --init --recursive
 
-# This is for running out-of-cluster locally, and is for convenience. Running
-# this make target will print out the command which was used. For more control,
-# try running the binary directly with different arguments.
 run: go.build
 	@$(INFO) Running Crossplane locally out-of-cluster . . .
 	@# To see other arguments that can be provided, run the command with --help instead
 	UPBOUND_CONTEXT="local" $(GO_OUT_DIR)/provider --debug
 
-# ====================================================================================
-# End to End Testing
 CROSSPLANE_VERSION = 1.16.0
 CROSSPLANE_NAMESPACE = upbound-system
 -include build/makelib/local.xpkg.mk

@@ -9,4 +9,8 @@ func Configure(p *config.Provider) {
 		// Upcoming deprecation - use the mongodbatlas_project_ip_addresses data source instead
 		delete(r.TerraformResource.Schema, "ip_addresses")
 	})
+
+	p.AddResourceConfigurator("mongodbatlas_project_api_key", func(r *config.Resource) {
+		r.ExternalName = config.NameAsIdentifier
+	})
 }
