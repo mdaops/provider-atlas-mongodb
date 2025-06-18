@@ -3,9 +3,10 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 var ExternalNameConfigs = map[string]config.ExternalName{
-	"mongodbatlas_project":          config.IdentifierFromProvider,
-	"mongodbatlas_advanced_cluster": config.IdentifierFromProvider,
-	"mongodbatlas_project_api_key":  config.IdentifierFromProvider,
+	"mongodbatlas_project":             config.IdentifierFromProvider,
+	"mongodbatlas_advanced_cluster":    config.IdentifierFromProvider,
+	"mongodbatlas_project_api_key":     config.IdentifierFromProvider,
+	"mongodbatlas_alert_configuration": config.IdentifierFromProvider,
 }
 
 func ExternalNameConfigurations() config.ResourceOption {
@@ -20,7 +21,6 @@ func ExternalNameConfigured() []string {
 	l := make([]string, len(ExternalNameConfigs))
 	i := 0
 	for name := range ExternalNameConfigs {
-		// $ is added to match the exact string since the format is regex.
 		l[i] = name + "$"
 		i++
 	}
